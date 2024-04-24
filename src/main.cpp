@@ -74,16 +74,16 @@ BOOL APIENTRY DllMain(HMODULE hmod, DWORD reason, PVOID)
 				while (!FindWindow("grcWindow", nullptr))
 					std::this_thread::sleep_for(100ms);
 				std::filesystem::path base_dir = std::getenv("appdata");
-				base_dir /= "TupoyeMenu";
+				base_dir /= "FamilyGTA";
 				g_file_manager.init(base_dir);
 
-				auto logger_instance = std::make_unique<logger>("SkidMenu", g_file_manager.get_project_file("./cout.log"));
+				auto logger_instance = std::make_unique<logger>("FamilyGTA", g_file_manager.get_project_file("./cout.log"));
 
 				EnableMenuItem(GetSystemMenu(GetConsoleWindow(), 0), SC_CLOSE, MF_BYCOMMAND | MF_DISABLED | MF_GRAYED);
 
 				std::srand(std::chrono::system_clock::now().time_since_epoch().count());
 
-				LOG(INFO) << "TupoyeMenu Initializing";
+				LOG(INFO) << "FamilyMenu Initializing";
 
 				auto thread_pool_instance = std::make_unique<thread_pool>();
 				LOG(INFO) << "Thread pool initialized.";
