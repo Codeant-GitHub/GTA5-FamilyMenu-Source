@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BAF9F07A-2664-A5F1-6FA2-5697DB4B8346}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>BigBaseV2</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\int\$(ProjectName)\</IntDir>
+    <TargetExt>.dll</TargetExt>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>common.hpp</PrecompiledHeaderFile>
+      <WarningLevel>Level1</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>4100;4201;4307;4996;4819;4804;4838</DisableSpecificWarnings>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;ENABLE_SOCIALCLUB;ENABLE_ASI_LOADER;ENABLE_LUA;CURL_STATICLIB;_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN;ZYDIS_STATIC_BUILD;ZYDIS_DISABLE_ENCODER;ZYCORE_STATIC_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Family;$(SolutionDir)src;$(SolutionDir)include\json-src\single_include;$(SolutionDir)include\gtav_classes-src;$(SolutionDir)include\imgui-src;$(SolutionDir)include\pugixml-src\src;$(SolutionDir)include\minhook-src\include;$(SolutionDir)include\asynclogger-src\src;$(SolutionDir)include\asynclogger-src\include;$(SolutionDir)include\cpr-src\include;$(SolutionDir)include\cpr-build\cpr_generated_includes;$(SolutionDir)include\curl-src\include;$(SolutionDir)include\zydis-src\include;$(SolutionDir)include\zydis-build;$(SolutionDir)include\zydis-src\dependencies\zycore\include;$(SolutionDir)include\zydis-build\zycore;$(SolutionDir)include\lua-src\lua-5.4.4\include;$(SolutionDir)include\detours-src\include;$(SolutionDir)include\g3log-src\src;$(SolutionDir)include\g3log-build\include;$(SolutionDir)include\fmt-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>common.hpp</ForcedIncludeFiles>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateMapFile>true</GenerateMapFile>
+      <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
+      <AdditionalDependencies>$(SolutionDir)lib\g3log.lib;$(SolutionDir)lib\fmt.lib;$(SolutionDir)lib\minhook.x64.lib;$(SolutionDir)lib\AsyncLogger.lib;$(SolutionDir)lib\imgui.lib;$(SolutionDir)lib\cpr.lib;$(SolutionDir)lib\Zydis.lib;$(SolutionDir)lib\lua_static.lib;$(SolutionDir)lib\pugixml.lib;$(SolutionDir)lib\libcurl.lib;$(SolutionDir)lib\Zycore.lib;$(SolutionDir)lib\Detours.lib;d3dcompiler.lib;dwmapi.lib;psapi.lib;dbghelp.lib;winmm.lib;ws2_32.lib;advapi32.lib;crypt32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\asi_loader\asi_scripts.hpp" />
+    <ClInclude Include="src\asi_loader\pe_image.hpp" />
+    <ClInclude Include="src\asi_loader\script_manager.hpp" />
+    <ClInclude Include="src\byte_patch_manager.hpp" />
+    <ClInclude Include="src\call_hook.hpp" />
+    <ClInclude Include="src\common.hpp" />
+    <ClInclude Include="src\crossmap.hpp" />
+    <ClInclude Include="src\data\scr_enums.hpp" />
+    <ClInclude Include="src\data\scr_globals.hpp" />
+    <ClInclude Include="src\detour_hook.hpp" />
+    <ClInclude Include="src\fiber_pool.hpp" />
+    <ClInclude Include="src\file_manager.hpp" />
+    <ClInclude Include="src\file_manager\file.hpp" />
+    <ClInclude Include="src\file_manager\folder.hpp" />
+    <ClInclude Include="src\friends\friends_service.hpp" />
+    <ClInclude Include="src\function_types.hpp" />
+    <ClInclude Include="src\gta\blip.hpp" />
+    <ClInclude Include="src\gta\enums.hpp" />
+    <ClInclude Include="src\gta\fidevice.hpp" />
+    <ClInclude Include="src\gta\fwddec.hpp" />
+    <ClInclude Include="src\gta\joaat.hpp" />
+    <ClInclude Include="src\gta\json_serializer.hpp" />
+    <ClInclude Include="src\gta\natives.hpp" />
+    <ClInclude Include="src\gta\net_array.hpp" />
+    <ClInclude Include="src\gta\net_game_event.hpp" />
+    <ClInclude Include="src\gta\net_object_mgr.hpp" />
+    <ClInclude Include="src\gta\ped_factory.hpp" />
+    <ClInclude Include="src\gta\pickup_rewards.hpp" />
+    <ClInclude Include="src\gta\pools.hpp" />
+    <ClInclude Include="src\gta\script_handler.hpp" />
+    <ClInclude Include="src\gta\script_program.hpp" />
+    <ClInclude Include="src\gta\script_thread.hpp" />
+    <ClInclude Include="src\gta\vehicle_values.hpp" />
+    <ClInclude Include="src\gta_pointers.hpp" />
+    <ClInclude Include="src\gta_pointers_layout_info.hpp" />
+    <ClInclude Include="src\gta_util.hpp" />
+    <ClInclude Include="src\gui.hpp" />
+    <ClInclude Include="src\hooking.hpp" />
+    <ClInclude Include="src\invoker.hpp" />
+    <ClInclude Include="src\logger\exception_handler.hpp" />
+    <ClInclude Include="src\logger\logger.hpp" />
+    <ClInclude Include="src\logger\stack_trace.hpp" />
+    <ClInclude Include="src\memory\all.hpp" />
+    <ClInclude Include="src\memory\batch.hpp" />
+    <ClInclude Include="src\memory\byte_patch.hpp" />
+    <ClInclude Include="src\memory\fwddec.hpp" />
+    <ClInclude Include="src\memory\handle.hpp" />
+    <ClInclude Include="src\memory\module.hpp" />
+    <ClInclude Include="src\memory\pattern.hpp" />
+    <ClInclude Include="src\memory\range.hpp" />
+    <ClInclude Include="src\memory\signature.hpp" />
+    <ClInclude Include="src\natives.hpp" />
+    <ClInclude Include="src\notifications\notification_service.hpp" />
+    <ClInclude Include="src\notifications\view_notifications.hpp" />
+    <ClInclude Include="src\players\player.hpp" />
+    <ClInclude Include="src\players\player_service.hpp" />
+    <ClInclude Include="src\players\rate_limiter.hpp" />
+    <ClInclude Include="src\pointers.hpp" />
+    <ClInclude Include="src\renderer.hpp" />
+    <ClInclude Include="src\rpf_loader\yim_fipackfile.hpp" />
+    <ClInclude Include="src\script.hpp" />
+    <ClInclude Include="src\script_global.hpp" />
+    <ClInclude Include="src\script_local.hpp" />
+    <ClInclude Include="src\script_mgr.hpp" />
+    <ClInclude Include="src\sc_pointers.hpp" />
+    <ClInclude Include="src\sc_pointers_layout_info.hpp" />
+    <ClInclude Include="src\shv_runner.hpp" />
+    <ClInclude Include="src\thread_pool.hpp" />
+    <ClInclude Include="src\util\entity.hpp" />
+    <ClInclude Include="src\util\math.hpp" />
+    <ClInclude Include="src\util\outfit.hpp" />
+    <ClInclude Include="src\util\ped.hpp" />
+    <ClInclude Include="src\util\pools.hpp" />
+    <ClInclude Include="src\util\string_conversions.hpp" />
+    <ClInclude Include="src\util\vehicle.hpp" />
+    <ClInclude Include="src\util\world_model.hpp" />
+    <ClInclude Include="src\vmt_hook.hpp" />
+    <ClInclude Include="src\vtable_hook.hpp" />
+    <ClInclude Include="src\xml_loader\xml_map_service.hpp" />
+    <ClInclude Include="src\xml_loader\xml_vehicles_service.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\asi_loader\asi_scripts.cpp" />
+    <ClCompile Include="src\asi_loader\pe_image.cpp" />
+    <ClCompile Include="src\asi_loader\script_manager.cpp" />
+    <ClCompile Include="src\byte_patch_manager.cpp" />
+    <ClCompile Include="src\call_hook.cpp" />
+    <ClCompile Include="src\common.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\crossmap.cpp" />
+    <ClCompile Include="src\detour_hook.cpp" />
+    <ClCompile Include="src\fiber_pool.cpp" />
+    <ClCompile Include="src\file_manager.cpp" />
+    <ClCompile Include="src\file_manager\file.cpp" />
+    <ClCompile Include="src\file_manager\folder.cpp" />
+    <ClCompile Include="src\friends\friends_service.cpp" />
+    <ClCompile Include="src\gta\fidevice.cpp" />
+    <ClCompile Include="src\gta\script_handler.cpp" />
+    <ClCompile Include="src\gui.cpp" />
+    <ClCompile Include="src\hooking.cpp" />
+    <ClCompile Include="src\invoker.cpp" />
+    <ClCompile Include="src\logger\exception_handler.cpp" />
+    <ClCompile Include="src\logger\logger.cpp" />
+    <ClCompile Include="src\logger\stack_trace.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\memory\batch.cpp" />
+    <ClCompile Include="src\memory\byte_patch.cpp" />
+    <ClCompile Include="src\memory\module.cpp" />
+    <ClCompile Include="src\memory\pattern.cpp" />
+    <ClCompile Include="src\memory\range.cpp" />
+    <ClCompile Include="src\notifications\notification_service.cpp" />
+    <ClCompile Include="src\notifications\view_notifications.cpp" />
+    <ClCompile Include="src\players\player.cpp" />
+    <ClCompile Include="src\players\player_service.cpp" />
+    <ClCompile Include="src\pointers.cpp" />
+    <ClCompile Include="src\renderer.cpp" />
+    <ClCompile Include="src\rpf_loader\yim_fipackfile.cpp" />
+    <ClCompile Include="src\script.cpp" />
+    <ClCompile Include="src\script_global.cpp" />
+    <ClCompile Include="src\script_local.cpp" />
+    <ClCompile Include="src\script_mgr.cpp" />
+    <ClCompile Include="src\shv_runner.cpp" />
+    <ClCompile Include="src\thread_pool.cpp" />
+    <ClCompile Include="src\util\entity.cpp" />
+    <ClCompile Include="src\util\vehicle.cpp" />
+    <ClCompile Include="src\vmt_hook.cpp" />
+    <ClCompile Include="src\vtable_hook.cpp" />
+    <ClCompile Include="src\xml_loader\xml_map_service.cpp" />
+    <ClCompile Include="src\xml_loader\xml_vehicles_service.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

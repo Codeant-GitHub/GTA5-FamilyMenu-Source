@@ -1,0 +1,10 @@
+#pragma once
+#include "common.hpp"
+#include "gta/natives.hpp"
+
+namespace big
+{
+	constexpr auto NATIVE_COUNT = 6568;
+	using crossmap              = std::array<std::pair<rage::scrNativeHash, rage::scrNativeHash>, NATIVE_COUNT>;
+	extern const crossmap g_crossmap;
+}
