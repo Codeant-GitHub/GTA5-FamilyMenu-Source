@@ -77,7 +77,7 @@ BOOL APIENTRY DllMain(HMODULE hmod, DWORD reason, PVOID)
 				base_dir /= "FamilyGTA";
 				g_file_manager.init(base_dir);
 
-				auto logger_instance = std::make_unique<logger>("FamilyGTA", g_file_manager.get_project_file("./cout.log"));
+				auto logger_instance = std::make_unique<logger>("FamilyGTA", g_file_manager.get_project_file("./Family.log"));
 
 				EnableMenuItem(GetSystemMenu(GetConsoleWindow(), 0), SC_CLOSE, MF_BYCOMMAND | MF_DISABLED | MF_GRAYED);
 
